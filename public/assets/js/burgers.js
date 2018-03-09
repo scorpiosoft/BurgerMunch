@@ -2,6 +2,7 @@ $(document).ready(function()
 {
   $(".munch").on("click", function(event)
   {
+    console.log("munch", $(this));
     var id = $(this).data("id");
 
     var obj =
@@ -24,11 +25,8 @@ $(document).ready(function()
     );
   });
 
-  $(".burger_add").on("submit", function(event)
+  $(".burger_add").on("click", function(event)
   {
-    // Make sure to preventDefault on a submit event.
-    // event.preventDefault();
-
     var newburger =
     {
       name: $("#bn").val().trim()
