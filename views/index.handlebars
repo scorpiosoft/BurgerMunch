@@ -1,0 +1,29 @@
+<h1>Burger Munch</h1>
+
+<h2>Burgers to be munched</h2>
+<ul>
+  {{#each Burgers}}
+    {{#unless munched}}
+      {{name}}
+      <button class="munch">Munch</button>
+    {{/unless}}
+  {{/each}}
+</ul>
+
+<h2>Munched burgers</h2>
+<ul>
+  {{#each Burgers}}
+    {{#if munched}}
+      {{name}}
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Burger</h2>
+<div class="burger_add">
+  <div class="form-group">
+    <label for="bn">Burger Name:</label>
+    <input type="text" id="bn" name="name">
+  </div>
+  <button type="submit">Add Burger</button>
+</div>

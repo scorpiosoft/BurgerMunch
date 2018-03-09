@@ -6,19 +6,19 @@ router.get("/", function(req, res)
 {
   burger.all(function(data)
   {
-    var hbsObject =
+    var obj =
     {
       burgers: data
     };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
+    console.log(obj);
+    res.render("index", obj);
   });
 });
 
 router.post("/api/burgers", function(req, res)
 {
-  burger.create(["name", "sleepy"],
-    [req.body.name, req.body.sleepy], function(result)
+  burger.create(["name", "munched"],
+    [req.body.name, req.body.munched], function(result)
   {
     // respond with the new ID
     res.json({ id: result.insertId });
@@ -27,11 +27,11 @@ router.post("/api/burgers", function(req, res)
 
 router.put("/api/burgers/:id", function(req, res)
 {
-  var condition = "id = " + req.params.id;
+  var id = "id = " + req.params.id;
 
-  console.log("condition", condition);
+  console.log("id", id);
 
-  burger.update({ sleepy: req.body.sleepy }, condition,
+  burger.update({ munched: req.body.munched }, id,
   function(result)
   {
     if (result.changedRows == 0)

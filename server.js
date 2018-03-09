@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 // use handlebars
 var exphbs = require("express-handlebars");
-app.engine("handlebars", exphbs({ defaultLayout: "index" }));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // handle routes through the controller script

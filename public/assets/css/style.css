@@ -1,0 +1,18 @@
+li
+{
+  padding: 5px;
+  margin: 5px;
+  background: #faebd7;
+}
+
+.label
+{
+  font-weight: bold;
+}
+
+.burger_add
+{
+  padding: 5px;
+  margin: 5px;
+  background: aqua;
+}
