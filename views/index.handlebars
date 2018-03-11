@@ -5,20 +5,20 @@
   <div class="row">
     <div class="col-md-6">
       <h2 class="text-center">Burgers to be munched</h2>
-      <ul>
+      <ul class="list-group">
         {{#each burgers}}
           {{#unless munched}}
-            <li>{{name}}<button class="munch float-right mr-1" data-id="{{id}}">Munch</button></li>
+            <li class="list-group-item li_active mb-2"><span>{{name}}<button class="munch float-right mr-1 btn btn-primary" type="button" data-id="{{id}}">Munch</button></span></li>
           {{/unless}}
         {{/each}}
       </ul>
     </div>
     <div class="col-md-6">
       <h2 class="text-center">Munched burgers</h2>
-      <ul>
+      <ul class="list-group">
         {{#each burgers}}
           {{#if munched}}
-            <li><span class="text-muted">{{name}}</span></li>
+            <li class="list-group-item li_passive mb-2"><span>{{name}}</span></li>
           {{/if}}
         {{/each}}
       </ul>
@@ -26,15 +26,14 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
       <h2 class="text-center">Add a Burger</h2>
-      <div>
+      <div id="input_box">
         <div class="form-group">
-          <label for="bn">Burger Name:</label>
-          <input type="text" id="bn" name="name">
+          <input id="bn" name="name" class="form-control" type="text" placeholder="Burger Name">
         </div>
-        <button class="burger_add" type="button">Add Burger</button>
+        <button class="burger_add btn btn-success float-right" type="button">Add Burger</button>
       </div>
     </div>
   </div>
