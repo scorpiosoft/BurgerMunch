@@ -1,13 +1,19 @@
 var mysql = require("mysql");
+var connection;
 
-var connection = mysql.createConnection(
+if (process.env.CLEARDB_DATABASE_URL)
 {
-  port: 3306,
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "burgers"
-});
+  connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
+} else {
+  connection = mysql.createConnection(
+  {
+    port: 3306,
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "burgers"
+  });
+}
 
 connection.connect(function(err)
 {
