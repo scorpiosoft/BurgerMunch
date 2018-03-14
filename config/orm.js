@@ -1,4 +1,4 @@
-var connection = require("../config/connection.js");
+var pool = require("../config/connection.js");
 
 //
 // utility functions for SQL syntax
@@ -45,38 +45,51 @@ var orm =
   all: function(table, cb)
   {
     var query_str = "SELECT * FROM " + table + ";";
-    connection.query(query_str, function(err, result)
-    {
-      if (err) throw err;
+    console.log(query_str);
 
-      cb(result);
+    pool.getConnection(function(err, connection)
+    {
+      connection.query(query_str, function(err, result)
+      {
+        cb(result);
+        connection.release();
+
+        if (err) throw err;
+      });
     });
   },
   insert: function(table, cols, vals, cb)
   {
     var query_str = "INSERT INTO " + table + " (" + cols.toString() + ") ";
     query_str += "VALUES (" + sql_placeholders(vals.length) + ") ";
-
     console.log(query_str);
 
-    connection.query(query_str, vals, function(err, result)
+    pool.getConnection(function(err, connection)
     {
-      if (err) throw err;
+      connection.query(query_str, vals, function(err, result)
+      {
+        cb(result);
+        connection.release();
 
-      cb(result);
+        if (err) throw err;
+      });
     });
   },
   update: function(table, cols_obj, condition, cb)
   {
     var query_str = "UPDATE " + table + " SET " + obj2sql(cols_obj);
     query_str += " WHERE " + condition;
-
     console.log(query_str);
-    connection.query(query_str, function(err, result)
-    {
-      if (err) throw err;
 
-      cb(result);
+    pool.getConnection(function(err, connection)
+    {
+      connection.query(query_str, function(err, result)
+      {
+        cb(result);
+        connection.release();
+
+        if (err) throw err;
+      });
     });
   }
 };

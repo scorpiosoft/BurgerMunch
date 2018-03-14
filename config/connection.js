@@ -1,12 +1,13 @@
 var mysql = require("mysql");
-var connection;
+var pool;
 
 if (process.env.CLEARDB_DATABASE_URL)
 {
-  connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
+  pool = mysql.createPool(process.env.CLEARDB_DATABASE_URL);
 } else {
-  connection = mysql.createConnection(
+  pool = mysql.createPool(
   {
+    connectionLimit: 10,
     port: 3306,
     host: "localhost",
     user: "root",
@@ -15,14 +16,15 @@ if (process.env.CLEARDB_DATABASE_URL)
   });
 }
 
-connection.connect(function(err)
-{
-  if (err)
-  {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
+// Heroku does not support a permanent connection!!!
+// connection.connect(function(err)
+// {
+//   if (err)
+//   {
+//     console.error("error connecting: " + err.stack);
+//     return;
+//   }
+//   console.log("connected as id " + connection.threadId);
+// });
 
-module.exports = connection;
+module.exports = pool;
