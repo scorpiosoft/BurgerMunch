@@ -1,9 +1,6 @@
 # BurgerMunch
 An app demonstrating express-handlebars.
 
-## Deployed
- - [via Heroku](https://scorpio-burger-munch.herokuapp.com/)
-
 ## Built With
 
 * Node.js
